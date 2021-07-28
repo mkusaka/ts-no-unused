@@ -16,7 +16,7 @@
   },
   "type": "module",
   "bin": {
-    "ts-no-unused": "bin/cli"
+    "ts-no-unused": "bin/cli.js"
   },
   "scripts": {
     "build": "rm -rf dist && tsc",
