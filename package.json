@@ -1,8 +1,7 @@
 {
-  "name": "no-unused",
+  "name": "ts-no-unused",
   "version": "0.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/mkusaka/no-unused.git",
+  "repository": "https://github.com/mkusaka/ts-no-unused.git",
   "author": "mkusaka <hinoshita1992@gmail.com>",
   "license": "MIT",
   "devDependencies": {
@@ -16,5 +15,7 @@
     "ts-morph": "^11.0.3"
   },
   "type": "module",
-  "bin": "dist/cli.js"
+  "bin": {
+    "ts-no-unused": "dist/cli.js"
+  }
 }

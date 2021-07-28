@@ -14,9 +14,9 @@ const consoleLog =
 const cli = meow(
   `
   Usage
-    $ npx no-unused
-    $ npx on-unused --tsconfig-path ./src/tsconfig.json
-    $ npx on-unused --logLevel debug`,
+    $ npx ts-no-unused
+    $ npx ts-no-unused --tsconfig-path ./src/tsconfig.json
+    $ npx ts-no-unused --logLevel debug`,
   {
     importMeta: import.meta,
     flags: {
@@ -51,3 +51,4 @@ for (const sourceFile of sourceFiles) {
   logger(`done remove: ${sourceFile.getFilePath()} unused identifier`);
 }
 
+const foo = "foo";``
