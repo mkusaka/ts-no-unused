@@ -1,6 +1,6 @@
 {
   "name": "ts-no-unused",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "repository": "https://github.com/mkusaka/ts-no-unused.git",
   "author": "mkusaka <hinoshita1992@gmail.com>",
   "license": "MIT",
