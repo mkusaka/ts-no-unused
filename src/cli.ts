@@ -51,4 +51,3 @@ for (const sourceFile of sourceFiles) {
   logger(`done remove: ${sourceFile.getFilePath()} unused identifier`);
 }
 
-const foo = "foo";``
