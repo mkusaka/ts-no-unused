@@ -21,5 +21,12 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "prepublishOnly": "yarn build && git push origin HEAD && git push --tags"
-  }
+  },
+  "files": [
+    "dist",
+    "bin",
+    "src",
+    "tsconfig.json",
+    "README.md"
+  ]
 }
