@@ -17,5 +17,9 @@
   "type": "module",
   "bin": {
     "ts-no-unused": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "prepublishOnly": "yarn build && git push origin HEAD && git push --tags"
   }
 }
