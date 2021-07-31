@@ -3,7 +3,7 @@ name: test
 on:
   push:
 
-permission:
+permissions:
   contents: read
 
 jobs:
