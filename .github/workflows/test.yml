@@ -1,0 +1,28 @@
+name: test
+
+on:
+  push:
+
+permission:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ '12', '14', '16' ]
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - uses: node/setup-ruby@v1
+        with:
+          bundler: "Gemfile.lock"
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install dependencies
+        run: |
+          yarn install
+      - name: Run tests
+        run: yarn test
