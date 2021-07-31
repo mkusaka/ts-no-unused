@@ -11,6 +11,7 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
+    "fast-glob": "^3.2.7",
     "meow": "^10.1.0",
     "ts-morph": "^11.0.3"
   },
