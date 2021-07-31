@@ -20,7 +20,8 @@
   },
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "prepublishOnly": "yarn build && git push origin HEAD && git push --tags"
+    "prepublishOnly": "yarn test && git push origin HEAD && git push --tags",
+    "test": "test/bin/run"
   },
   "files": [
     "dist",

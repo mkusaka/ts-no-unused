@@ -1,0 +1,31 @@
+#!/bin/bash -e
+
+set -o pipefail
+
+yarn build
+
+pushd test
+yarn
+
+TARGET_PATH="./src/unused.ts"
+EXPECTED_PATH="./src/unused.expected.ts"
+
+ORIGINAL_TARGET=$(cat $TARGET_PATH)
+
+../bin/cli.js
+
+EXPECTED=$(cat $EXPECTED_PATH)
+
+TARGET=$(cat $TARGET_PATH)
+
+if [ "$TARGET" != "$EXPECTED" ]; then
+  echo "UNEXPECTED"
+  echo "EXPECTED: "$(cat $EXPECTED_PATH)
+  echo "ACTUAL: "$(cat $TARGET_PATH)
+  popd
+  exit 1
+else
+  echo "$ORIGINAL_TARGET"
+  echo "$ORIGINAL_TARGET" > $TARGET_PATH
+  popd
+fi

@@ -50,4 +50,3 @@ for (const sourceFile of sourceFiles) {
   sourceFile.saveSync();
   logger(`done remove: ${sourceFile.getFilePath()} unused identifier`);
 }
-
