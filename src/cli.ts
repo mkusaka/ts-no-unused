@@ -4,9 +4,9 @@ import { Project } from "ts-morph";
 import fg from "fast-glob";
 
 const consoleLog =
-  (level: string) =>
+  (verbose: boolean) =>
   (...logs: any[]) => {
-    if (level === "none") {
+    if (!verbose) {
       return;
     }
     console.log(...logs);
@@ -17,7 +17,7 @@ const cli = meow(
   Usage
     $ npx ts-no-unused
     $ npx ts-no-unused --tsconfig-path ./src/tsconfig.json
-    $ npx ts-no-unused --logLevel debug`,
+    $ npx ts-no-unused --verbose`,
   {
     importMeta: import.meta,
     flags: {
@@ -26,10 +26,10 @@ const cli = meow(
         default: join(process.cwd(), "tsconfig.json"),
         description: "Path to tsconfig.json",
       },
-      logLevel: {
-        type: "string",
-        default: "none",
-        description: "Log level",
+      verbose: {
+        type: "boolean",
+        default: false,
+        description: "verbose or not",
       },
       target: {
         type: "string",
@@ -41,10 +41,10 @@ const cli = meow(
 );
 
 const tsconfigPath = cli.flags.tsconfigPath;
-const logLevel = cli.flags.logLevel;
+const verbose = cli.flags.verbose;
 const targetPattern = cli.flags.target;
 
-const logger = consoleLog(logLevel);
+const logger = consoleLog(verbose);
 
 const project = new Project({
   tsConfigFilePath: tsconfigPath,
