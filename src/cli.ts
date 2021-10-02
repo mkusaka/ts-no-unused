@@ -17,7 +17,8 @@ const cli = meow(
   Usage
     $ npx ts-no-unused
     $ npx ts-no-unused --tsconfig-path ./src/tsconfig.json
-    $ npx ts-no-unused --verbose`,
+    $ npx ts-no-unused --verbose
+    $ npx ts-no-unused --target './src/nest/*.ts'`,
   {
     importMeta: import.meta,
     flags: {
