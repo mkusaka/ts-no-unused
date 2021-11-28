@@ -1,7 +1,8 @@
 # ts-no-unused
-auto remove no-unused-locals and parameters detected by typescript.
+Auto remove no-unused-locals and parameters detected by typescript.
 
-If we use typescript with noUnusedLocals or noUnusedParameters, compiler raise error if no unused local or parameter is detected.
+# motivation
+If you use typescript with noUnusedLocals or noUnusedParameters option, compiler raises error if unused local or parameter detected.
 
 This cli provide a way to remove unused local and parameter automatically.
 
