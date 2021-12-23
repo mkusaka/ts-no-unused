@@ -5,7 +5,7 @@
   "author": "mkusaka <hinoshita1992@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^16.11.16",
+    "@types/node": "^16.11.17",
     "prettier": "^2.4.1",
     "ts-node": "^10.3.0",
     "typescript": "^4.4.4"
