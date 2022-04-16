@@ -6,13 +6,13 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^16.11.27",
-    "prettier": "^2.4.1",
-    "ts-node": "^10.3.0",
-    "typescript": "^4.4.4"
+    "prettier": "^2.6.2",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
   },
   "dependencies": {
-    "fast-glob": "^3.2.7",
-    "meow": "^10.1.1",
+    "fast-glob": "^3.2.11",
+    "meow": "^10.1.2",
     "ts-morph": "^14.0.0"
   },
   "type": "module",
