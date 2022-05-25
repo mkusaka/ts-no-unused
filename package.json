@@ -13,7 +13,7 @@
   "dependencies": {
     "fast-glob": "^3.2.11",
     "meow": "^10.1.2",
-    "ts-morph": "^14.0.0"
+    "ts-morph": "^15.0.0"
   },
   "type": "module",
   "bin": {
