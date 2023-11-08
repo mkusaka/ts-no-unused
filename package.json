@@ -8,10 +8,10 @@
     "@types/node": "^20.9.0",
     "prettier": "^2.8.8",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.4"
+    "typescript": "^5.2.2"
   },
   "dependencies": {
-    "fast-glob": "^3.2.12",
+    "fast-glob": "^3.3.2",
     "meow": "^10.1.5",
     "ts-morph": "^18.0.0"
   },
