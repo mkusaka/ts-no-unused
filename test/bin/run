@@ -2,10 +2,10 @@
 
 set -o pipefail
 
-yarn build
+pnpm run build
 
 pushd test
-yarn
+pnpm install
 
 TARGET_PATH="./src/unused.ts"
 EXPECTED_PATH="./src/unused.expected.ts"
