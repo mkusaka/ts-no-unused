@@ -30,5 +30,6 @@
     "src",
     "tsconfig.json",
     "README.md"
-  ]
+  ],
+  "packageManager": "pnpm@11.5.2"
 }
