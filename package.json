@@ -5,12 +5,12 @@
   "author": "mkusaka <hinoshita1992@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=20"
+    "node": ">=20.20.2"
   },
   "devDependencies": {
     "@types/node": "20.9.0",
-    "prettier": "3.1.0",
-    "ts-node": "10.9.1",
+    "prettier": "3.8.3",
+    "ts-node": "10.9.2",
     "typescript": "6.0.3"
   },
   "dependencies": {
