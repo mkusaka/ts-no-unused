@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "fast-glob": "^3.3.3",
-    "meow": "^12.1.1",
+    "meow": "^14.1.0",
     "ts-morph": "^18.0.0"
   },
   "type": "module",
