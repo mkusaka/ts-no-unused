@@ -4,6 +4,9 @@
   "repository": "https://github.com/mkusaka/ts-no-unused.git",
   "author": "mkusaka <hinoshita1992@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
   "devDependencies": {
     "@types/node": "20.9.0",
     "prettier": "^3.1.0",
