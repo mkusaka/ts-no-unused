@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@types/node": "24.12.4",
-    "prettier": "3.8.3",
+    "prettier": "3.8.4",
     "ts-node": "10.9.2",
     "typescript": "6.0.3"
   },
@@ -34,5 +34,5 @@
     "tsconfig.json",
     "README.md"
   ],
-  "packageManager": "pnpm@11.5.2"
+  "packageManager": "pnpm@11.6.0"
 }
