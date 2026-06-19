@@ -38,3 +38,35 @@ You can filter target files with a glob pattern.
 ```bash
 ts-no-unused --target './src/nest/*.ts'
 ```
+
+# release
+
+Release tags are staged on npm through GitHub Actions trusted publishing.
+
+1. Bump `package.json` without creating a tag automatically.
+
+```bash
+npm version patch --no-git-tag-version
+```
+
+2. Run local checks, commit the version bump, then create and push the release
+   tag.
+
+```bash
+pnpm run check
+pnpm run publish:dry
+git tag v0.0.12
+git push origin HEAD
+git push origin v0.0.12
+```
+
+The `Release` workflow runs `npm stage publish`, then creates a GitHub Release.
+Approve the staged package on npmjs.com with 2FA to make it public.
+
+Configure npm Trusted Publisher for this package with:
+
+- Publisher: GitHub Actions
+- Organization or user: `mkusaka`
+- Repository: `ts-no-unused`
+- Workflow filename: `release.yml`
+- Allowed action: `npm stage publish`

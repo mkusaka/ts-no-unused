@@ -25,8 +25,10 @@
   },
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "prepublishOnly": "pnpm test && git push origin HEAD && git push --tags",
-    "test": "pnpm run build && vitest run"
+    "prepublishOnly": "pnpm run check",
+    "test": "pnpm run build && vitest run",
+    "check": "pnpm test",
+    "publish:dry": "pnpm publish --dry-run --no-git-checks"
   },
   "files": [
     "dist",

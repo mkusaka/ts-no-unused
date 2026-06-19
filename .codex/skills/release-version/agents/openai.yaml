@@ -1,0 +1,4 @@
+interface:
+  display_name: "Release Version"
+  short_description: "Version bump and release workflow for this package"
+  default_prompt: "Release the next package version safely"
