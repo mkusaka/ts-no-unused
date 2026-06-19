@@ -136,7 +136,7 @@ jobs:
       - name: Download pinact
         env:
           # renovate: datasource=github-releases depName=suzuki-shunsuke/pinact
-          PINACT_VERSION: v3.10.1
+          PINACT_VERSION: v4.1.0
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           archive="pinact_linux_amd64.tar.gz"
