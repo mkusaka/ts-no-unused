@@ -1,10 +1,14 @@
 # ts-no-unused
-Auto remove unused-locals and parameters detected by typescript.
+
+Automatically remove unused locals and parameters detected by TypeScript.
 
 # motivation
-If you use typescript with noUnusedLocals or noUnusedParameters option, compiler raises error if unused local or parameter detected.
 
-This cli provide a way to remove unused local and parameter automatically.
+If you use TypeScript with the `noUnusedLocals` or `noUnusedParameters`
+option, the compiler raises an error when it detects an unused local or
+parameter.
+
+This CLI provides a way to remove unused locals and parameters automatically.
 
 # install
 
@@ -14,18 +18,22 @@ npm install -g ts-no-unused
 
 # usage
 
-With no option, cli detect and fix under current project files. (tsconfig.json must be under current path.)
+With no option, the CLI detects and fixes files in the current project.
+`tsconfig.json` must exist in the current directory.
+
 ```bash
 ts-no-unused
 ```
 
-Can specify tsconfig.json file via --configPath option.
+You can specify a `tsconfig.json` file with `--tsconfig-path`.
 
 ```bash
-ts-no-unused --configPath ./relativeProject/tsconfig.json
+ts-no-unused --tsconfig-path ./relativeProject/tsconfig.json
 ```
 
-Can filter target files via glob pattern.
+The documented `--configPath` alias is also supported for compatibility.
+
+You can filter target files with a glob pattern.
 
 ```bash
 ts-no-unused --target './src/nest/*.ts'

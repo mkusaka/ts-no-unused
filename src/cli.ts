@@ -1,30 +1,98 @@
 import meow from "meow";
-import { join } from "path";
+import { isAbsolute, normalize, resolve } from "node:path";
 import { Project } from "ts-morph";
 import fg from "fast-glob";
 
-const consoleLog =
-  (verbose: boolean) =>
-  (...logs: any[]) => {
-    if (!verbose) {
-      return;
-    }
-    console.log(...logs);
-  };
+type Logger = (...logs: unknown[]) => void;
 
-const cli = meow(
-  `
+export type TsNoUnusedOptions = {
+  cwd?: string;
+  logger?: Logger;
+  targetPattern?: string;
+  tsconfigPath: string;
+};
+
+export type TsNoUnusedResult = {
+  processedFiles: string[];
+  skippedFiles: string[];
+};
+
+type MainOptions = {
+  cwd?: string;
+  logger?: Logger;
+};
+
+const helpText = `
   Usage
     $ npx ts-no-unused
     $ npx ts-no-unused --tsconfig-path ./src/tsconfig.json
     $ npx ts-no-unused --verbose
-    $ npx ts-no-unused --target './src/nest/*.ts'`,
-  {
+    $ npx ts-no-unused --target './src/nest/*.ts'`;
+
+const createLogger =
+  (verbose: boolean, logger: Logger): Logger =>
+  (...logs) => {
+    if (verbose) {
+      logger(...logs);
+    }
+  };
+
+export function runTsNoUnused({
+  cwd = process.cwd(),
+  logger = () => {},
+  targetPattern = "**/*",
+  tsconfigPath,
+}: TsNoUnusedOptions): TsNoUnusedResult {
+  const project = new Project({
+    tsConfigFilePath: resolvePath(cwd, tsconfigPath),
+  });
+
+  // FIXME: use ts-morph's getSourceFiles() with glob pattern. such as: project.getSourceFiles(targetPattern);
+  // but it doesn't work well now.
+  const targetFiles = new Set(
+    fg
+      .sync(targetPattern, {
+        absolute: true,
+        cwd,
+        ignore: ["**/node_modules/**"],
+        onlyFiles: true,
+      })
+      .map(normalizeFilePath),
+  );
+  const processedFiles: string[] = [];
+  const skippedFiles: string[] = [];
+
+  for (const sourceFile of project.getSourceFiles()) {
+    const filePath = normalizeFilePath(sourceFile.getFilePath());
+
+    if (!targetFiles.has(filePath)) {
+      logger(`skip file: ${filePath}`);
+      skippedFiles.push(filePath);
+      continue;
+    }
+
+    logger(`start remove: ${filePath} unused identifier`);
+    sourceFile.fixUnusedIdentifiers();
+    sourceFile.saveSync();
+    logger(`done remove: ${filePath} unused identifier`);
+    processedFiles.push(filePath);
+  }
+
+  return { processedFiles, skippedFiles };
+}
+
+export function main(
+  argv: readonly string[] = process.argv.slice(2),
+  { cwd = process.cwd(), logger = console.log }: MainOptions = {},
+): TsNoUnusedResult {
+  const cli = meow(helpText, {
     importMeta: import.meta,
+    argv,
     flags: {
       tsconfigPath: {
         type: "string",
-        default: join(process.cwd(), "tsconfig.json"),
+        default: "tsconfig.json",
+        aliases: ["configPath", "config-path"],
         description: "Path to tsconfig.json",
       },
       verbose: {
@@ -36,33 +104,22 @@ const cli = meow(
         type: "string",
         default: "**/*",
         description: "Target file glob patterns",
-      }
+      },
     },
-  }
-);
+  });
 
-const tsconfigPath = cli.flags.tsconfigPath;
-const verbose = cli.flags.verbose;
-const targetPattern = cli.flags.target;
+  return runTsNoUnused({
+    cwd,
+    logger: createLogger(cli.flags.verbose, logger),
+    targetPattern: cli.flags.target,
+    tsconfigPath: cli.flags.tsconfigPath,
+  });
+}
 
-const logger = consoleLog(verbose);
+function resolvePath(cwd: string, filePath: string): string {
+  return isAbsolute(filePath) ? filePath : resolve(cwd, filePath);
+}
 
-const project = new Project({
-  tsConfigFilePath: tsconfigPath,
-});
-
-// FIXME: use ts-morph's getSourceFiles() with glob pattern. such as: project.getSourceFiles(targetPattern);
-// but it doesn't work well now.
-const targetFiles = fg.sync(join(process.cwd(), targetPattern), { ignore: ['**/node_modules/**'] });
-const sourceFiles = project.getSourceFiles();
-
-for (const sourceFile of sourceFiles) {
-  if (!targetFiles.includes(sourceFile.getFilePath())) {
-    logger(`skip file: ${sourceFile.getFilePath()}`);
-    continue;
-  }
-  logger(`start remove: ${sourceFile.getFilePath()} unused identifier`);
-  sourceFile.fixUnusedIdentifiers();
-  sourceFile.saveSync();
-  logger(`done remove: ${sourceFile.getFilePath()} unused identifier`);
+function normalizeFilePath(filePath: string): string {
+  return normalize(filePath);
 }

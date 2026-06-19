@@ -11,7 +11,8 @@
     "@types/node": "24.12.4",
     "prettier": "3.8.4",
     "ts-node": "10.9.2",
-    "typescript": "6.0.3"
+    "typescript": "6.0.3",
+    "vitest": "^4.1.8"
   },
   "dependencies": {
     "fast-glob": "^3.3.3",
@@ -24,8 +25,8 @@
   },
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "prepublishOnly": "yarn test && git push origin HEAD && git push --tags",
-    "test": "test/bin/run"
+    "prepublishOnly": "pnpm test && git push origin HEAD && git push --tags",
+    "test": "pnpm run build && vitest run"
   },
   "files": [
     "dist",
