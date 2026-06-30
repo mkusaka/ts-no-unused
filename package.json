@@ -5,7 +5,7 @@
   "author": "mkusaka <hinoshita1992@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=24.17.0"
+    "node": ">=24.18.0"
   },
   "devDependencies": {
     "@types/node": "24.13.2",
