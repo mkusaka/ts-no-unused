@@ -29,7 +29,7 @@ jobs:
       - name: Download jactionlint
         env:
           # renovate: datasource=github-releases depName=jdx/jactionlint
-          JACTIONLINT_VERSION: v2.3.0
+          JACTIONLINT_VERSION: v2.5.0
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           archive="jactionlint_${JACTIONLINT_VERSION#v}_linux_amd64.tar.gz"
@@ -54,7 +54,7 @@ jobs:
       - name: Download ghalint
         env:
           # renovate: datasource=github-releases depName=suzuki-shunsuke/ghalint
-          GHALINT_VERSION: v1.5.6
+          GHALINT_VERSION: v1.6.0
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           archive="ghalint_${GHALINT_VERSION#v}_linux_amd64.tar.gz"
@@ -87,7 +87,7 @@ jobs:
           token: ${{ github.token }}
           advanced-security: false
           annotations: true
-          version: v1.31.1 # renovate: depName=zizmorcore/zizmor
+          version: v1.32.0 # renovate: depName=zizmorcore/zizmor
   codeql-actions:
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -97,7 +97,7 @@ jobs:
       pull-requests: write
     env:
       # renovate: datasource=github-releases depName=reviewdog/reviewdog
-      REVIEWDOG_VERSION: v0.21.2
+      REVIEWDOG_VERSION: v0.21.3
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -159,7 +159,7 @@ jobs:
       - name: Download pinact
         env:
           # renovate: datasource=github-releases depName=suzuki-shunsuke/pinact
-          PINACT_VERSION: v5.0.0
+          PINACT_VERSION: v5.0.2
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           archive="pinact_linux_amd64.tar.gz"
